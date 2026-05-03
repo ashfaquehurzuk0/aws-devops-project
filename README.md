@@ -27,7 +27,7 @@ all secured with IAM roles and Security Groups.
 | Docker | Application containerisation |
 | Jenkins | CI/CD pipeline automation |
 | Python Flask | Web application |
-| Git & GitHub | Version control |
+| Git & GitHub | Version control | 
 
 ## Project Steps
 ### Step 1 - VPC and Network Setup
