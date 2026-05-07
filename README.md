@@ -1,62 +1,38 @@
-# AWS Multi-Tier DevOps Deployment with Load Balancer
+# AWS Multi-Tier DevOps Deployment
 
-## Project Overview
-Built a production-style multi-tier cloud infrastructure on AWS from scratch.
-Custom VPC with public and private subnets across two Availability Zones,
-Application Load Balancer routing traffic to Docker-containerised EC2 instances,
-Jenkins CI/CD pipeline automating deployments, and CloudWatch monitoring —
-all secured with IAM roles and Security Groups.
+## What This Does
+Deploys a containerised Python Flask app on AWS using a multi-tier 
+architecture with Jenkins CI/CD automation, Docker, and an 
+Application Load Balancer across private and public subnets.
 
 ## Architecture
-- VPC with public and private subnets across 2 Availability Zones
-- Application Load Balancer (ALB) routing traffic to private EC2 instances
-- NAT Gateway for secure outbound internet access from private subnets
-- Python Flask app containerised with Docker and deployed on EC2
-- Jenkins Freestyle CI/CD pipeline automating build and deployment
-- CloudWatch for infrastructure monitoring
-- IAM roles and Security Groups enforcing least-privilege access
+![Architecture](Architecture.png)
 
 ## Tech Stack
-| Tool | Purpose |
-|------|---------|
-| AWS EC2 | Application servers in private subnets |
-| AWS VPC | Network isolation and routing |
-| AWS ALB | Load balancing and traffic distribution |
-| AWS IAM | Access control and permissions |
-| AWS CloudWatch | Monitoring and alerting |
-| Docker | Application containerisation |
-| Jenkins | CI/CD pipeline automation |
-| Python Flask | Web application |
-| Git & GitHub | Version control | 
+AWS (VPC, EC2, ALB, NAT Gateway, IAM, CloudWatch) | Docker | Jenkins | Python Flask
 
-## Project Steps
-### Step 1 - VPC and Network Setup
-- Created VPC with custom CIDR block
-- Created public subnets (for ALB) and private subnets (for EC2) across 2 AZs
-- Attached Internet Gateway for public subnet internet access
-- Configured NAT Gateway in public subnet for private instance outbound access
-- Set up route tables for both public and private subnets
+## How It Works
+1. Developer pushes code to GitHub
+2. Jenkins detects the push and triggers the pipeline
+3. Jenkins builds a Docker image and tags it with build number
+4. Image is pushed to DockerHub
+5. Jenkins pulls the image on EC2 and runs the container
+6. ALB routes traffic to the running container
 
-### Step 2 - EC2 and Security Groups
-- Launched EC2 instances in private subnets
-- Security Group: ALB allows port 80 from internet, EC2 allows port 80 only from ALB
+## How to Deploy
+1. Clone this repo
+2. Set up Jenkins on EC2 with Docker installed
+3. Create a Jenkins Freestyle job pointing to this repo
+4. Add DockerHub credentials in Jenkins
+5. Trigger the pipeline — it will build, push, and deploy automatically
 
-### Step 3 - Application Load Balancer
-- Created ALB in public subnets
-- Created Target Group pointing to private EC2 instances
-- Configured health checks and listener rules
+## Problems I Solved
+- **Docker auth error in Jenkins** → Fixed by adding jenkins user to docker group: `usermod -aG docker jenkins`
+- **Jenkins permission conflict** → Resolved by configuring sudoers for jenkins user
+- **Port mapping failure** → Fixed incorrect EXPOSE vs -p flag mismatch in Dockerfile
 
-### Step 4 - Docker and Application Deployment
-- Built Docker image from Python Flask app using Dockerfile
-- Ran container on EC2 instances with port mapping
-
-### Step 5 - Jenkins CI/CD Pipeline
-- Installed Jenkins on EC2
-- Created Freestyle job to pull code, build Docker image, and deploy container
-- Verified successful build via Jenkins console output
-
-### Step 6 - Monitoring
-- Configured CloudWatch to monitor EC2 CPU, network, and status checks
+## Screenshots
+[your existing screenshots here]
 
 ## Screenshots
 
