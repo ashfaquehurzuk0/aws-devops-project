@@ -29,10 +29,7 @@ AWS (VPC, EC2, ALB, NAT Gateway, IAM, CloudWatch) | Docker | Jenkins | Python Fl
 ## Problems I Solved
 - **Docker auth error in Jenkins** → Fixed by adding jenkins user to docker group: `usermod -aG docker jenkins`
 - **Jenkins permission conflict** → Resolved by configuring sudoers for jenkins user
-- **Port mapping failure** → Fixed incorrect EXPOSE vs -p flag mismatch in Dockerfile
-
-## Screenshots
-[your existing screenshots here]
+- **Port mapping failure** → Fixed incorrect EXPOSE vs -p flag mismatch in Dockerfi
 
 ## Screenshots
 
