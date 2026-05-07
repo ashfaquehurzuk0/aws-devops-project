@@ -75,9 +75,6 @@ all secured with IAM roles and Security Groups.
 ### EC2 Instances
 ![EC2](EC2-Instances.jpeg)
 
-### Jenkins CI/CD - Successful Build
-![Jenkins](Jenkins-success.jpeg)
-
 ### Docker Container Running
 ![Docker](docker-running.jpeg)
 
