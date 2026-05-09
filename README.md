@@ -1,3 +1,4 @@
+![CI](https://github.com/ashfaquehurzuk0/aws-devops-project/actions/workflows/ci.yml/badge.svg)
 # AWS Multi-Tier DevOps Deployment
 
 ## What This Does
