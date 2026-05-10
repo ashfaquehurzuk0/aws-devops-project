@@ -49,13 +49,13 @@ docker run -d -p 5000:5000 flask-app
 1. Create a Freestyle job in Jenkins
 2. Set GitHub repo URL under Source Code Management
 3. Add DockerHub credentials (ID: `dockerhub-creds`)
-4. Add GitHub webhook: `http://YOUR-JENKINS-IP:8080/github-webhook/`
+4. Add GitHub webhook: `http://43.204.116.61:8080/github-webhook/`
 5. Push any commit — pipeline triggers automatically
 
 ## Problems I Solved
 - **Docker auth error in Jenkins** → Fixed by adding jenkins user to docker group: `usermod -aG docker jenkins`
 - **Jenkins permission conflict** → Resolved by configuring sudoers for jenkins user
-- **Port mapping failure** → Fixed incorrect EXPOSE vs -p flag mismatch in Dockerfi
+- **Port mapping failure** → Fixed incorrect EXPOSE vs -p flag mismatch in Dockerfile
 
 ## Screenshots
 
