@@ -21,11 +21,36 @@ AWS (VPC, EC2, ALB, NAT Gateway, IAM, CloudWatch) | Docker | Jenkins | Python Fl
 6. ALB routes traffic to the running container
 
 ## How to Deploy
-1. Clone this repo
-2. Set up Jenkins on EC2 with Docker installed
-3. Create a Jenkins Freestyle job pointing to this repo
-4. Add DockerHub credentials in Jenkins
-5. Trigger the pipeline — it will build, push, and deploy automatically
+
+### Prerequisites
+- AWS account with EC2 access
+- DockerHub account
+- Jenkins installed on EC2 (public subnet)
+
+### Steps
+```bash
+# On Jenkins EC2 — install Docker and add jenkins to docker group
+sudo yum install docker -y
+sudo systemctl start docker
+sudo usermod -aG docker jenkins
+sudo systemctl restart jenkins
+
+# Clone the repo
+git clone https://github.com/ashfaquehurzuk0/aws-devops-project.git
+
+# Build and test locally first
+cd aws-devops-project
+docker build -t flask-app .
+docker run -d -p 5000:5000 flask-app
+# Visit http://localhost:5000
+```
+
+### Jenkins Setup
+1. Create a Freestyle job in Jenkins
+2. Set GitHub repo URL under Source Code Management
+3. Add DockerHub credentials (ID: `dockerhub-creds`)
+4. Add GitHub webhook: `http://YOUR-JENKINS-IP:8080/github-webhook/`
+5. Push any commit — pipeline triggers automatically
 
 ## Problems I Solved
 - **Docker auth error in Jenkins** → Fixed by adding jenkins user to docker group: `usermod -aG docker jenkins`
