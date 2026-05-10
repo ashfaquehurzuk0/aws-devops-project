@@ -1,4 +1,4 @@
-![CI](https://github.com/ashfaquehurzuk0/aws-devops-project/actions/workflows/ci.yml/badge.svg)
+[![CI](https://github.com/ashfaquehurzuk0/aws-devops-project/actions/workflows/ci.yml/badge.svg)](https://github.com/ashfaquehurzuk0/aws-devops-project/actions/workflows/ci.yml)
 # AWS Multi-Tier DevOps Deployment
 
 ## What This Does
